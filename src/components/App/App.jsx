@@ -1,40 +1,55 @@
-import { ContainerApp } from './App.styled';
-import Filter from 'components/Filter/Filter';
-import ContactList from 'components/ContactList/ContactList';
-import ContactForm from 'components/ContactForm/ContactForm';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectContactsState } from '../../redux/contactSlice';
-import { selectIsLoading, selectError } from '../../redux/contactSlice';
-import { useEffect } from 'react';
-import { fetchContacts } from '../../redux/contactsOperations';
+import React, { lazy, Suspense, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import { refreshUser } from '../../redux/auth/authOperations';
+import { useAuth } from 'hooks';
+import { PublicRoute } from 'components/PublicRoute/PublicRoute';
+import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
 
-const App = () => {
+const Layout = lazy(() => import('components/Layout/Layout'));
+const HomePage = lazy(() => import('../../pages/HomePage'));
+const RegisterPage = lazy(() => import('../../pages/RegisterPage'));
+const LoginPage = lazy(() => import('../../pages/LoginPage'));
+const ContactPages = lazy(() => import('../../pages/ContactPages'));
+
+export const App = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContactsState);
-  const items  = useSelector(selectContacts);
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-  console.log(contacts, items, isLoading, error)
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
-    <ContainerApp>
-      <div>
-        <h1>Phonebook</h1>
-        <ContactForm />
-      </div>
-      <div>
-        <h2>Contacts</h2>
-        <Filter />
-        {isLoading && <p>Loading...</p>}
-        {error && <p style={{ color: 'red' }}>Error: {error}</p>}
-        <ContactList />
-      </div>
-    </ContainerApp>
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute
+                component={<RegisterPage />}
+                redirectTo="/contacts"
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute component={<LoginPage />} redirectTo="/contacts" />
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute component={<ContactPages />} redirectTo="/login" />
+            }
+          />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 };
-
-export default App;

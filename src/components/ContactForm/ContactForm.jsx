@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact} from '../../redux/contactsOperations';
+import { addContact } from '../../redux/contacts/contactsOperations';
 import { FormEl } from './ContactForm.styled';
-import { selectContacts } from '../../redux/contactSlice';
+import { selectContacts } from '../../redux/contacts/contactsSlice';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
-  console.log(contacts)
+  console.log(contacts);
 
   const handleInputChange = event => {
     const { name, value } = event.target;

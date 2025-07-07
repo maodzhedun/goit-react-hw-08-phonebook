@@ -17,10 +17,14 @@ code {
 }
 
 
+a {
+  display: block;
+}
 ul {
+  margin: 0;
   padding: 0;
+  list-style: none;
 }
 p {
   margin: 0;
 }
-
