@@ -6,14 +6,13 @@ import { selectContacts } from '../../redux/contacts/contactsSlice';
 
 const ContactList = () => {
   const contacts = useSelector(selectContacts);
-  console.log('contacts:', contacts);
   const filter = useSelector(selectFilter);
 
   const normalizedFilter = filter.toLowerCase();
   const visibleContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(normalizedFilter)
   );
-  console.log('visibleContacts', visibleContacts);
+
   if (!contacts.length) return <div>Нет контактов</div>;
 
   return (

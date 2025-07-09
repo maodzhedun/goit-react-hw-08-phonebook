@@ -6,7 +6,8 @@ export const FormEl = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   gap: 12px;
 
   label {
@@ -30,6 +31,6 @@ export const FormEl = styled.div`
     border-radius: 6px;
     background-color: rgb(111, 142, 79);
     border: none;
-    margin-top: 30px;
+    margin-top: 20px;
   }
 `;
