@@ -18,16 +18,16 @@ const LoginForm = () => {
 
   return (
     <Box
-      as="form" // Render Box as a form element
+      as="form" 
       onSubmit={handleSubmit}
       autoComplete="off"
-      p={8} // Padding around the form
-      borderWidth={1} // Add a border
-      borderRadius="lg" // Rounded corners
-      boxShadow="lg" // Add a shadow
-      maxWidth="md" // Limit max width
-      mx="auto" // Center the form horizontally
-      mt={10} // Margin top
+      p={8} 
+      borderWidth={1} 
+      borderRadius="lg" 
+      boxShadow="lg" 
+      maxWidth="md" 
+      mx="auto" 
+      mt={10} 
     >
       <VStack spacing={4} align="stretch">
         {' '}
@@ -52,12 +52,12 @@ const LoginForm = () => {
         </Field.Root>
         <Button
           type="submit"
-          colorScheme="blue" // Use Chakra's color scheme
-          size="lg" // Large button size
+          colorScheme="blue" 
+          size="lg" 
           mx="auto"
-          width="50%" // Make button full width
-          mt={4} // Margin top for spacing
-          borderRadius="md" // Rounded corners for button
+          width="50%" 
+          mt={4} 
+          borderRadius="md" 
         >
           Log In
         </Button>

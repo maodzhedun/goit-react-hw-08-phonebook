@@ -17,7 +17,7 @@ const clearAuthHeader = () => {
  * POST @ /users/signup
  * body: { name, email, password }
  */
-//{rejectWithValue} = thunkAPI = detructurisation  - the rejectWithValue function from the thunkAPI object
+//{rejectWithValue} = thunkAPI => destruct  - the rejectWithValue function from the thunkAPI object
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {

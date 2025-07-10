@@ -6,7 +6,7 @@ export const ContainerApp = styled.div`
   margin-right: auto;
   padding: 12px 18px;
   h1,
-  h2,
+  h2 ,
   h3 {
     text-align: center;
   }

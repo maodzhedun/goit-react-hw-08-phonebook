@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 
 import { selectError, selectIsLoading } from '../redux/contacts/contactsSlice';
 import { fetchContacts } from '../redux/contacts/contactsOperations';
+import { Heading } from '@chakra-ui/react';
 
 function ContactPages() {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ function ContactPages() {
         <ContactForm />
       </div>
       <div>
-        <h2>Contacts</h2>
+        <Heading as="h2" size="lg" mb={4}>Contacts</Heading>
         <Filter />
         {isLoading && <p>Loading...</p>}
         {error && <p style={{ color: 'red' }}>Error: {error}</p>}

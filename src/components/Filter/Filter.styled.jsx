@@ -7,8 +7,9 @@ export const Filtered = styled.label`
   /* border: 1px solid black; */
   font-size: 18px;
   font-weight: 600;
-
+  
   input {
+    margin-bottom: 12px;
     margin-left: 6px;
     width: 250px;
     padding: 4px;

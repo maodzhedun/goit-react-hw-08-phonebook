@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux';
 import { selectFilter } from '../../redux/contacts/filterSlice';
 import ContactListItem from 'components/ContactListItem/ContactListItem';
-import { List } from './ContactList.styled';
+// import { List } from './ContactList.styled';
 import { selectContacts } from '../../redux/contacts/contactsSlice';
+import { ListRoot } from '@chakra-ui/react';
 
 const ContactList = () => {
   const contacts = useSelector(selectContacts);
@@ -16,11 +17,11 @@ const ContactList = () => {
   if (!contacts.length) return <div>Нет контактов</div>;
 
   return (
-    <List>
+    <ListRoot>
       {visibleContacts.map(contact => (
         <ContactListItem key={contact.id} contact={contact} />
       ))}
-    </List>
+    </ListRoot>
   );
 };
 
